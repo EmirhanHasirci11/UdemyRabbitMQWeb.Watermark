@@ -14,6 +14,6 @@ namespace UdemyRabbitMQWeb.Watermark.Models
         [Range(1,100)]
         public int Stock{ get; set; }
         [StringLength(100)]
-        public string PictureUrk{ get; set; }
+        public string ImageName{ get; set; }
     }
 }
