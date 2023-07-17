@@ -53,7 +53,7 @@ namespace UdemyRabbitMQWeb.Watermark.BackgroundServices
 
                 using var graphic = Graphics.FromImage(img);
 
-                var font = new Font(FontFamily.GenericMonospace, 32, FontStyle.Bold, GraphicsUnit.Pixel);
+                var font = new Font(FontFamily.GenericMonospace, 45, FontStyle.Bold, GraphicsUnit.Pixel);
 
                 var textSize = graphic.MeasureString(siteName, font);
 
@@ -65,7 +65,7 @@ namespace UdemyRabbitMQWeb.Watermark.BackgroundServices
 
                 graphic.DrawString(siteName, font, brush, position);
 
-                img.Save("wwwroot/Images/watermarks/" + productImageCreatedEvent.ImageName + "Watermark");
+                img.Save("wwwroot/Images/watermarks/" + productImageCreatedEvent.ImageName);
 
                 img.Dispose();
 
@@ -74,9 +74,9 @@ namespace UdemyRabbitMQWeb.Watermark.BackgroundServices
                 _channel.BasicAck(@event.DeliveryTag, false);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                _logger.LogError(ex.Message);
                 throw;
             }
             return Task.CompletedTask;
